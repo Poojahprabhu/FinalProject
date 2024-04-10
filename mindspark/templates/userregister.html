@@ -1,4 +1,6 @@
 
+
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +23,8 @@
     phone = models.CharField(max_length=10)
     enroll_date = models.DateTimeField(auto_now_add=True)
   -->
-  <!-- <form action="">
+  <form action=""  method="POST">
+    {% csrf_token %}
     <label for="name">Name:</label>
     <input type="text" id="name" name="name" required><br><br>
     
@@ -66,7 +69,7 @@
     <input type="text" id="phone" name="phone" required><br><br>
     
     <input type="submit" value="Submit">
-</form> -->
-<h1>This is home</h1>
+</form>
 </body>
 </html>
+{% endblock %}
