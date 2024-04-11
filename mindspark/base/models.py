@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils import timezone
 # Create your models here.
 # Name
 # USN
@@ -26,19 +26,20 @@ from django.db import models
 
 class user(models.Model):
     name = models.CharField(max_length=100)
-    usn = models.CharField(max_length=10)
-    dob = models.DateField
-    gender = models.CharField(max_length=10)
-    highest_edu = models.CharField(max_length=100)
-    disability = models.CharField(max_length=10)
+    usn = models.CharField(max_length=100)
+    dob = models.DateField(default=timezone.now)
+    gender = models.CharField(max_length=100)
+    # highest_edu = models.CharField(max_length=100)
+    disability = models.CharField(max_length=100)
     sem = models.IntegerField()
     college = models.CharField(max_length=100)
     username = models.CharField(max_length=100)
     password = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
-    phone = models.CharField(max_length=10)
+    phone = models.BigIntegerField()
     enroll_date = models.DateTimeField(auto_now_add=True) 
-
+    def __str__(self):
+        return self.name
 # class parameters(models.Model):
 #     user = models.ForeignKey(user, on_delete=models.CASCADE)
 #     sub_code = models.CharField(max_length=10)
@@ -48,10 +49,10 @@ class user(models.Model):
 #     credits = models.IntegerField()
 #     sum_click = models.IntegerField()
 
+        
 class feedback(models.Model):
     user = models.ForeignKey(user, on_delete=models.CASCADE)
     feedback = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
 
-def __str__(self):
-    return self.name
+
