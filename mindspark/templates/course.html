@@ -1,3 +1,5 @@
+
+{% block content%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +8,70 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>This is course page</h1>
+    <h1>course</h1>
+    <iframe width="560" height="315" src="https://youtube.com/embed/tpIctyqH29Q?si=oGc9XpPlUv287cqL" allowfullscreen></iframe>
+     
+    <video id="video" width="640" height="480" style="display: none;" autoplay></video>
+    <button id="capture-btn" style="display: none;">Capture</button>
+    <div id="image-container"></div>
+    <script>
+        var enable_camera = true; // Set this value based on your application logic
+
+        if (enable_camera) {
+            // Access the user's front camera
+            navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } })
+                .then(function(stream) {
+                    var video = document.getElementById('video');
+                    video.srcObject = stream;
+                    video.play();
+
+                    var picCount = 0;
+                    var intervalId = setInterval(function() {
+                        simulateClick(); // Simulate a click event on the capture button
+                        picCount++;
+                        if (picCount >= 5) {
+                            clearInterval(intervalId);
+                            displayImages(); // Display captured images
+                        }
+                    }, 3000); // Initial 3-second interval
+                })
+                .catch(function(err) {
+                    console.error('Error accessing camera:', err);
+                });
+        }
+
+        // Function to simulate a click event on the capture button
+        function simulateClick() {
+            var captureBtn = document.getElementById('capture-btn');
+            var event = new MouseEvent('click', {
+                bubbles: true,
+                cancelable: true,
+                view: window
+            });
+            captureBtn.dispatchEvent(event);
+        }
+
+        // Function to take a picture when the capture button is clicked
+        document.getElementById('capture-btn').addEventListener('click', function() {
+            var video = document.getElementById('video');
+            var canvas = document.createElement('canvas');
+            var context = canvas.getContext('2d');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            var imageData = canvas.toDataURL('image/png');
+            // Append the captured image to the image container
+            var img = document.createElement('img');
+            img.src = imageData;
+            document.getElementById('image-container').appendChild(img);
+        });
+
+        // Function to display captured images
+        function displayImages() {
+            var imageContainer = document.getElementById('image-container');
+            imageContainer.innerHTML += "<p>Analysis is ready!</p>";
+        }
+    </script>
 </body>
 </html>
+{% endblock %}

@@ -25,8 +25,8 @@ from django.utils import timezone
 # Sum click
 
 class user(models.Model):
-    name = models.CharField(max_length=100)
-    usn = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, null=False, unique=True)
+    usn = models.CharField(max_length=100, null=False, unique=True)
     dob = models.DateField(default=timezone.now)
     gender = models.CharField(max_length=100)
     # highest_edu = models.CharField(max_length=100)
@@ -35,7 +35,7 @@ class user(models.Model):
     college = models.CharField(max_length=100)
     username = models.CharField(max_length=100)
     password = models.CharField(max_length=100)
-    email = models.EmailField(max_length=100)
+    email = models.EmailField(max_length=100 )
     phone = models.BigIntegerField()
     enroll_date = models.DateTimeField(auto_now_add=True) 
     def __str__(self):

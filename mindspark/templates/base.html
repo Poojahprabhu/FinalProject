@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+
+  nav {
+    background-color: #0d3053; /* Dark blue background */
+    color: #fff; /* White text color */
+    position: fixed; /* Stick the navbar to the top */
+    top: 0;
+    left: 0; /* Align to left edge */
+    width: 100%; /* Span the full width */
+    padding: 10px 20px; /* Add padding */
+    box-sizing: border-box; /* Include padding in width calculation */
+    z-index: 10; /* Ensure navbar stays above content on overlap */
+  }
+  
+  nav ul {
+    list-style: none; /* Remove default bullet points */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    display: flex; /* Arrange links horizontally */
+    justify-content: space-between; /* Space links evenly */
+  }
+  
+  nav li {
+    display: inline-block; /* Display buttons inline */
+    margin-right: 20px; /* Add margin between buttons */
+  }
+  
+  nav li:last-child { /* Style the last button */
+    margin-right: 0;
+  }
+  
+  nav input[type="button"] {
+    background-color: transparent; /* Remove default button background */
+    border: none; /* Remove default button border */
+    color: inherit; /* Inherit text color from nav */
+    font-weight: bold; /* Make buttons bolder */
+    padding: 5px 10px; /* Add padding for button size */
+    cursor: pointer; /* Indicate clickable behavior */
+    text-decoration: none; /* Remove underline */
+    outline: none; /* Remove outline on focus */
+  }
+  
+  nav input[type="button"]:hover { /* Style buttons on hover */
+    background-color: #343a40; /* Subtly darken background on hover */
+  }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <ul>
+          <li><input type="button" value="Home" onclick="location.href='{% url 'home' %}'" /></li>
+          <li><input type="button" value="Profile" onclick="location.href='{% url 'profile' %}'" /></li>
+          <li><input type="button" value="Course" onclick="location.href='{% url 'course' %}'" /></li>
+          <li><input type="button" value="Quiz" onclick="location.href='{% url 'quiz' %}'" /></li>
+          <li><input type="button" value="Result" onclick="location.href='{% url 'result' %}'" /></li>
+        </ul>
+      </nav>
+      <div>
+      {% block content %}
+      {% endblock %}
+    </div>
+</body>
+</html>

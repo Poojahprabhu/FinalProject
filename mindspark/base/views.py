@@ -4,12 +4,14 @@ from .forms import userForm
 from .models import user
 from django.shortcuts import redirect
 from django.forms import ModelForm
+from django.contrib.messages import constants as messages
 
 def home(request):
     return render(request,'home.html')
 
 def course(request):
-    return render(request,'course.html')
+    enable_camera = True  
+    return render(request,'course.html',{'enable_camera': enable_camera})
 
 def result(request):
     return render(request,'result.html')
@@ -17,66 +19,28 @@ def result(request):
 def quiz(request):
     return render(request,'quiz.html')
 
-#  <!-- name = models.CharField(max_length=100)
-#     usn = models.CharField(max_length=10)
-#     dob = models.DateField
-#     gender = models.CharField(max_length=10)
-#     highest_edu = models.CharField(max_length=100)
-#     disability = models.CharField(max_length=10)
-#     sem = models.IntegerField()
-#     college = models.CharField(max_length=100)
-#     username = models.CharField(max_length=100)
-#     password = models.CharField(max_length=100)
-#     email = models.EmailField(max_length=100)
-#     phone = models.CharField(max_length=10)
-#     enroll_date = models.DateTimeField(auto_now_add=True)
-#   -->
 def userregister(request):
     if request.method == 'POST':
-        form = userForm(request.POST)  # Create form instance with POST data
+        form = userForm(request.POST) 
         if form.is_valid():
             form.save()
-            return redirect('course')  # Redirect to your desired page
+            return redirect('course')  
         else:
+            form = userForm()
             context = {'form': form}
-            print( form.errors )
-            return HttpResponse('Invalid form')
+            print(form.errors)
+            return HttpResponse("Invalid Form")
+            # Return the form with errors to the user
+        return render(request, 'userregister.html', {'form': form})
+        
     else:
         form = userForm()
         context = {'form': form}
     return render(request, 'userregister.html', context)
-    
+
+def profile(request):
+    return render(request,'profile.html') 
         
-    # form = userForm(request.POST)
-    
-    # if request.method == 'POST':
-    #     form = userForm()
-    #     if form.is_valid():
-    #         form.save()
-    #         return redirect('course')
-    #     else:
-    #         return redirect('result')
-    # context = {'form':form}
-    # return render(request,'userregister.html',context)
-    # #     name = request.POST.get('name')
-    # #     usn = request.POST.get('usn')
-    # #     dob = request.POST.get('dob')
-    # #     gender = request.POST.get('gender')
-    # #     highest_edu = request.POST.get('highestedu')
-    # #     disability = request.POST.get('disability')
-    # #     sem = request.POST.get('sem')
-    # #     college = request.POST.get('college')
-    # #     username = request.POST.get('username')
-    # #     password = request.POST.get('password')
-    # #     email = request.POST.get('email')
-    # #     phone = request.POST.get('phone')
-    # #     form = userForm(name = name, usn = usn, dob = dob,gender = gender,highest_edu = highest_edu,disability = disability,sem = sem,college = college,username = username,password = password,email = email,phone = phone)
-    # #     form.save()
-    
-    #     # if form.is_valid():
-    #     #     form.save()
-    #     #     return redirect('course')
-    #     # else:
-    #     #     
+def home(request):
+    return render(request,'home.html')
    
-    

@@ -1,72 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mind Spark - Home</title>
 </head>
 <body>
-    <!-- name = models.CharField(max_length=100)
-    usn = models.CharField(max_length=10)
-    dob = models.DateField
-    gender = models.CharField(max_length=10)
-    highest_edu = models.CharField(max_length=100)
-    disability = models.CharField(max_length=10)
-    sem = models.IntegerField()
-    college = models.CharField(max_length=100)
-    username = models.CharField(max_length=100)
-    password = models.CharField(max_length=100)
-    email = models.EmailField(max_length=100)
-    phone = models.CharField(max_length=10)
-    enroll_date = models.DateTimeField(auto_now_add=True)
-  -->
-  <!-- <form action="">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required><br><br>
-    
-    <label for="usn">USN:</label>
-    <input type="text" id="usn" name="usn" required><br><br>
-    
-    <label for="dob">DOB:</label>
-    <input type="date" id="dob" name="dob" required><br><br>
-
-    <label for="gender">Gender</label>
-    <select id="gender" name="gender" required>
-        <option value="M">Male</option>
-        <option value="Female">Female</option>
-        <option value="NA" default>Prefer not to say</option>
-      </select><br><br>
-
-    <label for="highestedu" >highest education</label>
-    <input type="text" id="highestedu" name="highestedu" required><br><br>
-    
-    <label for="disability">Disability</label>
-    <select id="disability" name="disability" required>
-        <option value="Y">Yes</option>
-        <option value="N">No</option>
-      </select> <br><br>
-    
-     <label for="sem">Semester</label>
-    <input type="number" id="sem" name="sem" required><br><br>
-    
-    <label for="college">College</label>
-    <input type="text" id="college" name="college" required><br><br>
-   
-    <label for="username">Username</label>
-    <input type="text" id="username" name="username" required><br><br>
-   
-    <label for="password">Password</label>
-    <input type="password" id="password" name="password" required><br><br>
-    
-    <label for="email">Email</label>
-    <input type="email" id="email" name="email" required><br><br>
-    
-    <label for="phone">Phone</label>
-    <input type="text" id="phone" name="phone" required><br><br>
-    
-    <input type="submit" value="Submit">
-</form> -->
-<h1>This is home</h1>
+  <h1>Mind Spark</h1>
+  <h2>Get your attention report</h2>
+  <input type="button" value="Create profile" onclick="location.href='{% url 'userregister' %}'" />
 </body>
 </html>

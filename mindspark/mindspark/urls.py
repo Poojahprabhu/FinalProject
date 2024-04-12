@@ -9,4 +9,6 @@ urlpatterns = [
     path('result/', include('base.urls')),
     path('userregister/', include('base.urls')),
     path('quiz/', include('base.urls')),
+    path('profile/', include('base.urls')),
+    path('home/', include('base.urls'))
 ]
