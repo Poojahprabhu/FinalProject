@@ -39,6 +39,7 @@ def userregister(request):
     return render(request, 'userregister.html', context)
 
 def profile(request):
+    
     return render(request,'profile.html') 
         
 def home(request):
